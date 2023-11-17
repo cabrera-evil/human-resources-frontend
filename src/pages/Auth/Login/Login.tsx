@@ -7,14 +7,14 @@ import PasswordInput from '../components/PasswordInput/PasswordInput';
 import { ApiResponse } from '../../../models/ApiResponse.type';
 
 interface LoginFormState {
-  username: string;
+  email: string;
   password: string;
   remember: boolean;
 }
 
 const Login: React.FC = () => {
   const [formData, setFormData] = useState<LoginFormState>({
-    username: '',
+    email: '',
     password: '',
     remember: false,
   });
@@ -37,7 +37,7 @@ const Login: React.FC = () => {
 
     // Login request
     authService.login({
-      username: formData.username,
+      email: formData.email,
       password: formData.password,
     }).then((res: ApiResponse) => {
       updateToken(res.data.access_token, formData.remember);
@@ -68,16 +68,16 @@ const Login: React.FC = () => {
           <form onSubmit={handleSubmit}>
             {/* Login fields */}
             <div className="mb-4">
-              <label htmlFor="username" className="block text-sm font-medium text-gray-700">
-                Username
+              <label htmlFor="email" className="block text-sm font-medium text-gray-700">
+                Email
               </label>
               <input
                 required
                 type="text"
-                id="username"
-                name="username"
+                id="email"
+                name="email"
                 className="w-full p-2 mt-1 border rounded-md focus:border-tertiary-500 focus:outline-none"
-                placeholder='johndoe'
+                placeholder='johndoe@example.com'
                 onChange={handleChange}
               />
             </div>
