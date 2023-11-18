@@ -40,7 +40,7 @@ const Login: React.FC = () => {
       email: formData.email,
       password: formData.password,
     }).then((res: ApiResponse) => {
-      updateToken(res.data.access_token, formData.remember);
+      updateToken(res.data.token, formData.remember);
       navigate('/home', { replace: true });
     })
       .catch(() => {
@@ -61,9 +61,9 @@ const Login: React.FC = () => {
         {/* Form container */}
         <div className='flex flex-col justify-center w-full h-full p-8 rounded-l-xl'>
           {/* Header */}
-          <img className='w-24 mx-auto' src="https://res.cloudinary.com/altf4/image/upload/v1697774584/ucademic-api/gallery/logo.png" alt="Logo" />
+          <img className='w-32 mx-auto' src="/src/assets/logo.jpg" alt="Logo" />
           <h1 className="pt-4 mb-4 text-3xl font-semibold text-center">Bienvenido</h1>
-          <p className='mb-8 text-lg font-semibold text-center text-gray-500 font-rancho'>¡Ingresa con tu cuenta UCA!</p>
+          <p className='mb-8 text-lg font-semibold text-center text-gray-500 font-rancho'>¡Ingresa con tu cuenta de trabajo!</p>
           {/* Form */}
           <form onSubmit={handleSubmit}>
             {/* Login fields */}
@@ -84,8 +84,8 @@ const Login: React.FC = () => {
             <div className="mb-4">
               <label htmlFor="password" className="block text-sm font-medium text-gray-700">
                 Password
-              </label>
               <PasswordInput onChange={handleChange} />
+              </label>
             </div>
             <div className="flex items-center mb-4">
               <input
@@ -107,9 +107,9 @@ const Login: React.FC = () => {
         {/* Img container */}
         <div className='hidden w-full h-full lg:block'>
           <img
-            src="https://dummyimage.com/1080x1920"
+            src="/src/assets/undraw_working_remotely_re_6b3a.svg"
             alt="Side Image"
-            className="object-cover w-full h-full rounded-r-xl"
+            className="object-fit w-full h-full rounded-r-xl p-16"
           />
         </div>
       </div>
