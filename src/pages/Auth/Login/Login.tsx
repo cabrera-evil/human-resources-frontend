@@ -41,7 +41,7 @@ const Login: React.FC = () => {
       password: formData.password,
     }).then((res: ApiResponse) => {
       updateToken(res.data.token, formData.remember);
-      navigate('/', { replace: true });
+      navigate('/home', { replace: true });
     })
       .catch(() => {
         toast.error('Usuario o contraseña incorrectos', {
