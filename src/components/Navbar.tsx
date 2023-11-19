@@ -9,9 +9,13 @@ const Navbar: React.FC = () => {
   const navigate = useNavigate();
 
   const handleCategoryClick = (category: string) => {
-    setSelectedCategory(category);
-
-    navigate(`/${category.toLowerCase().replace(' ', '-')}`);
+    if (selectedCategory === category) {
+      setSelectedCategory('');
+      navigate('/home');
+    } else {
+      setSelectedCategory(category);
+      navigate(`/${category.toLowerCase().replace(' ', '-')}`);
+    }
   };
 
   function handleLogout(event: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
@@ -24,7 +28,7 @@ const Navbar: React.FC = () => {
     <div className="w-full bg-white fixed top-0">
       <div className="mx-auto py-5 px-7">
         <nav className="flex justify-between">
-          <Link to="/home">
+          <Link to="/home" onClick={() => handleCategoryClick('')}>
             <div className="flex items-center space-x-3 lg:pr-16 pr-6">
               <img src="/src/assets/logo.jpg" alt="logo" className="w-10 h-10" />
               <h2 className="font-normal text-2xl leading-6 text-gray-800">Human Resources</h2>
@@ -36,9 +40,9 @@ const Navbar: React.FC = () => {
                 key={category}
                 onClick={() => handleCategoryClick(category)}
                 className={`focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-800 hover:bg-gray-100 ${selectedCategory === category
-                  ? 'text-white bg-indigo-600 hover:bg-indigo-700'
+                  ? 'text-white bg-tertiary-500 hover:bg-tertiary-600'
                   : 'text-gray-600 border border-white bg-gray-50'
-                  } cursor-pointer px-3 py-2.5 font-normal text-xs leading-3 shadow-md rounded`}
+                  } cursor-pointer px-3 py-3 font-normal text-xs leading-3 shadow-md rounded`}
               >
                 {category}
               </li>
