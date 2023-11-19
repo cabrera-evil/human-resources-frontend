@@ -5,6 +5,8 @@ import { useAuth } from '../../../context/AuthContext';
 import { ToastContainer, toast } from 'react-toastify';
 import PasswordInput from '../components/PasswordInput/PasswordInput';
 import { ApiResponse } from '../../../models/ApiResponse.type';
+import logo from '../../../assets/favicon.png';
+import sidePicture from '../../../assets/undraw_working_remotely_re_6b3a.svg';
 
 interface LoginFormState {
   email: string;
@@ -61,7 +63,7 @@ const Login: React.FC = () => {
         {/* Form container */}
         <div className='flex flex-col justify-center w-full h-full p-8 rounded-l-xl'>
           {/* Header */}
-          <img className='w-32 mx-auto' src="/src/assets/logo.jpg" alt="Logo" />
+          <img className='w-32 mx-auto' src={logo} alt="Logo" />
           <h1 className="pt-4 mb-4 text-3xl font-semibold text-center">Bienvenido</h1>
           <p className='mb-8 text-lg font-semibold text-center text-gray-500 font-rancho'>¡Ingresa con tu cuenta de trabajo!</p>
           {/* Form */}
@@ -84,7 +86,7 @@ const Login: React.FC = () => {
             <div className="mb-4">
               <label htmlFor="password" className="block text-sm font-medium text-gray-700">
                 Password
-              <PasswordInput onChange={handleChange} />
+                <PasswordInput onChange={handleChange} />
               </label>
             </div>
             <div className="flex items-center mb-4">
@@ -107,7 +109,7 @@ const Login: React.FC = () => {
         {/* Img container */}
         <div className='hidden w-full h-full lg:block'>
           <img
-            src="/src/assets/undraw_working_remotely_re_6b3a.svg"
+            src={sidePicture}
             alt="Side Image"
             className="object-fit w-full h-full rounded-r-xl p-16"
           />

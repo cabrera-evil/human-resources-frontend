@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import AuthService from '../Auth/services/Auth.service';
 import { useAuth } from '../../context/AuthContext';
 import { PulseLoader } from 'react-spinners';
+import logo from '../../assets/favicon.png';
 
 interface ProfileProps {
   name: string;
@@ -36,7 +37,7 @@ const Profile = () => {
       ) : (
         <div className="relative flex w-96 flex-col rounded-xl bg-white bg-clip-border text-gray-700 shadow-md">
           <div className="relative mx-4 mt-4 h-80 overflow-hidden rounded-xl bg-white bg-clip-border text-gray-700 shadow-lg">
-            <img src='/src/assets/logo.jpg' alt="profile-picture" />
+            <img src={logo} alt="profile-picture" />
           </div>
           <div className="p-6 text-center">
             <h4 className="mb-2 block font-sans text-2xl font-semibold leading-snug tracking-normal text-blue-gray-900 antialiased">

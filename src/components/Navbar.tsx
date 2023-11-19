@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
+import logo from '../assets/favicon.png';
 
 const Navbar: React.FC = () => {
   const options = ['Departments', 'Roles', 'Employees', 'Personal Info'];
@@ -30,7 +31,7 @@ const Navbar: React.FC = () => {
         <nav className="flex justify-between">
           <Link to="/home" onClick={() => handleCategoryClick('')}>
             <div className="flex items-center space-x-3 lg:pr-16 pr-6">
-              <img src="/src/assets/logo.jpg" alt="logo" className="w-10 h-10" />
+              <img src={logo} alt="logo" className="w-10 h-10" />
               <h2 className="font-normal text-2xl leading-6 text-gray-800">Human Resources</h2>
             </div>
           </Link>
