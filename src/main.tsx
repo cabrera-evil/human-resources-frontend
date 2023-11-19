@@ -4,13 +4,16 @@ import App from './App.tsx'
 import './index.css'
 import axios from 'axios';
 import { AuthProvider } from './context/AuthContext.tsx';
+import { RoleProvider } from './context/RoleContext.tsx';
 
 axios.defaults.baseURL = import.meta.env.VITE_API || "http://localhost:3000/api";
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <AuthProvider>
-    <React.StrictMode>
-      <App />
-    </React.StrictMode>
+    <RoleProvider>
+      <React.StrictMode>
+        <App />
+      </React.StrictMode>
+    </RoleProvider>
   </AuthProvider>
 )

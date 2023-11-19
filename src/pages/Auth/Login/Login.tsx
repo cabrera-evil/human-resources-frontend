@@ -7,6 +7,7 @@ import PasswordInput from '../components/PasswordInput/PasswordInput';
 import { ApiResponse } from '../../../models/ApiResponse.type';
 import logo from '../../../assets/favicon.png';
 import sidePicture from '../../../assets/undraw_working_remotely_re_6b3a.svg';
+import { useRole } from '../../../context/RoleContext';
 
 interface LoginFormState {
   email: string;
@@ -23,6 +24,7 @@ const Login: React.FC = () => {
   const authService = new AuthService();
   const navigate = useNavigate();
   const { updateToken } = useAuth();
+  const { updateRole } = useRole();
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
     const { name, value, type, checked } = e.target;
@@ -43,6 +45,7 @@ const Login: React.FC = () => {
       password: formData.password,
     }).then((res: ApiResponse) => {
       updateToken(res.data.token, formData.remember);
+      updateRole(res.data.token);
       navigate('/home', { replace: true });
     })
       .catch(() => {

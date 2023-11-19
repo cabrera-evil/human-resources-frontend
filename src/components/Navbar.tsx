@@ -1,13 +1,34 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import logo from '../assets/favicon.png';
+import { useRole } from '../context/RoleContext';
 
 const Navbar: React.FC = () => {
-  const options = ['Departments', 'Roles', 'Employees', 'Personal Info'];
   const [selectedCategory, setSelectedCategory] = useState<string>('Collections');
+  const [options, setOptions] = useState<string[]>([]);
   const { deleteToken } = useAuth();
+  const { role } = useRole();
   const navigate = useNavigate();
+
+  const getOptionsBasedOnRole = (role: string) => {
+    switch (role) {
+      case '65569fe99faa111636aaca6e': // Admin
+        return ['Departments', 'Employees', 'Personal Info'];
+      case '65569ff09faa111636aaca6f': // Superadmin
+        return ['Departments', 'Roles', 'Employees', 'Personal Info'];
+      case '65569ff69faa111636aaca70': // Employee
+        return ['Personal Info'];
+      default:
+        return [];
+    }
+  };
+
+  useEffect(() => {
+    if (role) {
+      setOptions(getOptionsBasedOnRole(role));
+    }
+  }, [role]);
 
   const handleCategoryClick = (category: string) => {
     if (selectedCategory === category) {
