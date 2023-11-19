@@ -49,7 +49,7 @@ const Login: React.FC = () => {
       navigate('/home', { replace: true });
     })
       .catch(() => {
-        toast.error('Usuario o contraseña incorrectos', {
+        toast.error('Wrong email or password!', {
           toastId: 'login-error',
           autoClose: 3000,
           hideProgressBar: true,
@@ -67,8 +67,8 @@ const Login: React.FC = () => {
         <div className='flex flex-col justify-center w-full h-full p-8 rounded-l-xl'>
           {/* Header */}
           <img className='w-32 mx-auto' src={logo} alt="Logo" />
-          <h1 className="pt-4 mb-4 text-3xl font-semibold text-center">Bienvenido</h1>
-          <p className='mb-8 text-lg font-semibold text-center text-gray-500 font-rancho'>¡Ingresa con tu cuenta de trabajo!</p>
+          <h1 className="pt-4 mb-4 text-3xl font-semibold text-center">Welcome</h1>
+          <p className='mb-8 text-lg font-semibold text-center text-gray-500 font-rancho'>Sign in with your work account</p>
           {/* Form */}
           <form onSubmit={handleSubmit}>
             {/* Login fields */}
@@ -101,11 +101,11 @@ const Login: React.FC = () => {
                 onChange={handleChange}
               />
               <label htmlFor="remember" className="text-sm font-medium text-gray-700">
-                Mantener la sesión iniciada
+                Remember me
               </label>
             </div>
             <button className="w-full px-4 py-2 text-white rounded-md bg-primary-500 hover:bg-primary-hover">
-              Iniciar sesión
+              Login
             </button>
           </form>
         </div>
