@@ -8,6 +8,7 @@ import { ApiResponse } from '../../../models/ApiResponse.type';
 import logo from '../../../assets/favicon.png';
 import sidePicture from '../../../assets/undraw_working_remotely_re_6b3a.svg';
 import { useRole } from '../../../context/RoleContext';
+import { PulseLoader } from 'react-spinners';
 
 interface LoginFormState {
   email: string;
@@ -21,6 +22,7 @@ const Login: React.FC = () => {
     password: '',
     remember: false,
   });
+  const [loading, setLoading] = useState(false);
   const authService = new AuthService();
   const navigate = useNavigate();
   const { updateToken } = useAuth();
@@ -39,6 +41,7 @@ const Login: React.FC = () => {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>): void => {
     e.preventDefault();
 
+    setLoading(true);
     // Login request
     authService.login({
       email: formData.email,
@@ -55,6 +58,7 @@ const Login: React.FC = () => {
           hideProgressBar: true,
           closeOnClick: true,
         });
+        setLoading(false);
       });
   };
 
@@ -118,6 +122,12 @@ const Login: React.FC = () => {
           />
         </div>
       </div>
+      {loading ? (
+        // Centered spinner container
+        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-50">
+          <PulseLoader color="#72C4E6" />
+        </div>
+      ) : null}
       <ToastContainer />
     </div>
   );
