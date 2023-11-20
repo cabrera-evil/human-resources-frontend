@@ -18,13 +18,13 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={auth.token ? <Layout /> : <Navigate to="/login" />} >
-          <Route path="home" element={auth.token ? <Home /> : <Navigate to="/login" />} />
+            <Route path="home" element={auth.token ? <Home /> : <Navigate to="/login" />} />
             <Route path="departments" element={auth.token ? <DepartmentTable /> : <Navigate to="/login" />} />
             <Route path="roles" element={auth.token ? <RoleTable /> : <Navigate to="/login" />} />
             <Route path="employees" element={auth.token ? <UserTable /> : <Navigate to="/login" />} />
             <Route path="personal-info" element={auth.token ? <Profile /> : <Navigate to="/login" />} />
           </Route>
-          <Route path="login" element={auth.token ? <Navigate to="/" /> : <Login />} />
+          <Route path="login" element={auth.token ? <Navigate to="/home" /> : <Login />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
