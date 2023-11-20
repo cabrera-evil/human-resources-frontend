@@ -3,6 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import logo from '../assets/favicon.png';
 import { useRole } from '../context/RoleContext';
+const decryptedRoles = import.meta.env.VITE_PUBLIC_DECRYPTED_ROLE.split(',');
 
 const Navbar: React.FC = () => {
   const [selectedCategory, setSelectedCategory] = useState<string>('Collections');
@@ -13,11 +14,11 @@ const Navbar: React.FC = () => {
 
   const getOptionsBasedOnRole = (role: string) => {
     switch (role) {
-      case '65569fe99faa111636aaca6e': // Admin
+      case decryptedRoles[0]:
         return ['Departments', 'Employees', 'Personal Info'];
-      case '65569ff09faa111636aaca6f': // Superadmin
+      case decryptedRoles[1]:
         return ['Departments', 'Roles', 'Employees', 'Personal Info'];
-      case '65569ff69faa111636aaca70': // Employee
+      case decryptedRoles[2]:
         return ['Personal Info'];
       default:
         return [];

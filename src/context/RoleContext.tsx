@@ -1,5 +1,6 @@
 import { jwtDecode } from 'jwt-decode';
 import React, { createContext, useState, useEffect, FC } from 'react';
+import { User } from '../pages/Users/models/User.interface';
 
 interface RoleContextType {
     role: string | null;
@@ -16,15 +17,21 @@ interface RoleProviderProps {
 const RoleProvider: FC<RoleProviderProps> = ({ children }) => {
     const [role, setRole] = useState<string | null>(null);
 
-    // First, try to get the role from localStorage
     const checkRole = () => {
         const localToken = localStorage.getItem('token');
         const sessionToken = sessionStorage.getItem('token');
-        setRole(localToken ?? sessionToken);
+        if(localToken) {
+            const decode: User = jwtDecode(localToken);
+            setRole(decode.role);
+        }
+        else if(sessionToken) {
+            const decode: User = jwtDecode(sessionToken);
+            setRole(decode.role);
+        }
     };
 
     const updateRole = (encryptedToken: string) => {
-        const decode: any = jwtDecode(encryptedToken);
+        const decode: User = jwtDecode(encryptedToken);
         setRole(decode.role);
     };
 
